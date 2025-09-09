@@ -3,9 +3,10 @@
 // Styled by Tailwind :)
 interface Props {
   color?: "red" | "black";
+  class?: string;
 }
 
-const { color = "red" } = Astro.props;
+const { color = "red", class: className = "" } = Astro.props;
 
 const baseClasses =
   "appearance-none py-2.5 px-6 text-white font-medium rounded-sm transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-opacity-50";
@@ -15,7 +16,7 @@ const colorClasses = {
 };
 ---
 
-<button class:list={[baseClasses, colorClasses[color]]}>
+<button class:list={[baseClasses, colorClasses[color], className]}>
   <slot />
 </button>
 

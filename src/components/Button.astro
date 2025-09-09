@@ -1,0 +1,29 @@
+---
+// Click button, get confetti!
+// Styled by Tailwind :)
+interface Props {
+  color?: "red" | "black";
+}
+
+const { color = "red" } = Astro.props;
+
+const baseClasses =
+  "appearance-none py-2.5 px-6 text-white font-medium rounded-sm transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-opacity-50";
+const colorClasses = {
+  red: "bg-red-600 hover:bg-black hover:shadow-md focus:ring-red-500",
+  black: "bg-black hover:bg-red-600 hover:shadow-md focus:ring-black",
+};
+---
+
+<button class:list={[baseClasses, colorClasses[color]]}>
+  <slot />
+</button>
+
+<script>
+  import confetti from "canvas-confetti";
+  const button = document.body.querySelector("button");
+
+  if (button) {
+    button.addEventListener("click", () => confetti());
+  }
+</script>

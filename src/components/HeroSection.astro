@@ -1,0 +1,68 @@
+---
+import SolutionCard from './SolutionCard.astro';
+import Card from './Card.tsx';
+---
+
+<section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+  <div 
+    class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+    style="background-image: url('/hero-bg.jpg')"
+  >
+    <div class="absolute inset-0 bg-black/20"></div>
+  </div>
+  
+  <div class="relative z-10 text-center mb-16">
+    <h1 class="text-6xl md:text-8xl font-black text-black mb-4">
+      YOUR LOGISTIC<br>
+      <span class="text-black">SOLUTION</span>
+    </h1>
+  </div>
+  
+  <div class="relative z-20 w-full max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
+      <SolutionCard />
+      
+      <Card client:load>
+        <div class="relative aspect-video bg-gray-100 rounded-lg overflow-hidden">
+          <img 
+            src="/video-thumbnail.jpg" 
+            alt="Logistics video" 
+            class="w-full h-full object-cover"
+          />
+          <button class="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-all group">
+            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </button>
+        </div>
+      </Card>
+      
+      <Card>
+        <div class="text-center p-6">
+          <p class="text-gray-600 mb-4">We manage load logistics for world's multinational Companies</p>
+          <div class="flex items-center justify-center mb-4">
+            <span class="text-4xl font-bold mr-2">4.8</span>
+            <div class="flex text-yellow-400">
+              {[...Array(5)].map((_, i) => (
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              ))}
+            </div>
+          </div>
+          <div class="flex items-center justify-center space-x-2 mb-2">
+            <div class="flex -space-x-2">
+              <div class="w-8 h-8 bg-red-600 rounded-full border-2 border-white"></div>
+              <div class="w-8 h-8 bg-blue-600 rounded-full border-2 border-white"></div>
+              <div class="w-8 h-8 bg-green-600 rounded-full border-2 border-white"></div>
+            </div>
+            <span class="text-sm font-medium">120+</span>
+          </div>
+          <p class="text-xs text-gray-500">Satisfied Clients</p>
+        </div>
+      </Card>
+    </div>
+  </div>
+</section>

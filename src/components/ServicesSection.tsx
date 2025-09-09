@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline';
+import { motion, AnimatePresence } from "motion/react";
 
 interface Service {
   number: string;
@@ -49,46 +50,87 @@ export default function ServicesSection() {
 
   return (
     <section className="py-20 px-6 max-w-4xl mx-auto">
-      <h2 className="text-5xl md:text-6xl font-black text-center text-gray-900 mb-16 leading-tight">
+      <motion.h2 
+        className="text-5xl md:text-6xl font-black text-center text-gray-900 mb-16 leading-tight"
+        initial={{ y: 50, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         Nuestros Servicios<br />
         Logísticos
-      </h2>
+      </motion.h2>
       
       <div className="space-y-0">
-        {services.map((service) => (
-          <div key={service.number} className="group cursor-pointer" onClick={() => toggleService(service.number)}>
+        {services.map((service, index) => (
+          <motion.div 
+            key={service.number}
+            className="group cursor-pointer"
+            onClick={() => toggleService(service.number)}
+            initial={{ y: 30, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ 
+              duration: 0.6, 
+              delay: index * 0.1,
+              ease: "easeOut"
+            }}
+            whileHover={{ x: 10 }}
+          >
             <div className="py-8 border-b border-gray-300 hover:border-gray-500 transition-all duration-300">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-12">
-                  <span className="text-lg font-medium text-gray-500 min-w-[3rem]">
+                  <motion.span 
+                    className="text-lg font-medium text-gray-500 min-w-[3rem]"
+                    whileHover={{ scale: 1.2, color: "#dc2626" }}
+                    transition={{ duration: 0.2 }}
+                  >
                     {service.number}
-                  </span>
+                  </motion.span>
                   <div className="flex-1">
                     <h3 className="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">
                       {service.title}
                     </h3>
                   </div>
                 </div>
-                <ArrowUpRightIcon 
-                  className={`w-6 h-6 text-gray-400 group-hover:text-red-600 transition-all duration-300 ${
-                    expandedService === service.number 
-                      ? 'transform rotate-90 text-red-600' 
-                      : 'group-hover:transform group-hover:translate-x-1 group-hover:-translate-y-1'
-                  }`} 
-                />
+                <motion.div
+                  animate={{ 
+                    rotate: expandedService === service.number ? 90 : 0,
+                    scale: expandedService === service.number ? 1.1 : 1
+                  }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  <ArrowUpRightIcon 
+                    className={`w-6 h-6 text-gray-400 group-hover:text-red-600 transition-colors duration-300`}
+                  />
+                </motion.div>
               </div>
               
-              <div className={`overflow-hidden transition-all duration-300 ${
-                expandedService === service.number ? 'max-h-32 opacity-100 mt-4' : 'max-h-0 opacity-0'
-              }`}>
-                <div className="ml-16">
-                  <p className="text-gray-600 max-w-2xl leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
-              </div>
+              <AnimatePresence>
+                {expandedService === service.number && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <motion.div 
+                      className="ml-16 mt-4"
+                      initial={{ y: -10 }}
+                      animate={{ y: 0 }}
+                      exit={{ y: -10 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <p className="text-gray-600 max-w-2xl leading-relaxed">
+                        {service.description}
+                      </p>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

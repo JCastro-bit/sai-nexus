@@ -1,5 +1,6 @@
 import type { SVGProps } from "react"
 import type { JSX } from "react/jsx-runtime"
+import { motion } from "motion/react";
 
 const navigation = {
   servicios: [
@@ -78,124 +79,246 @@ const navigation = {
   ],
 }
 
-export default function SAIFooter() {
+export default function ContactFooter() {
   return (
     <footer className="bg-black text-white">
       <div className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8 lg:py-32">
-        <div className="mx-auto max-w-2xl text-center">
+        <motion.div 
+          className="mx-auto max-w-2xl text-center"
+          initial={{ y: 60, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           <hgroup>
-            <h2 className="text-base/7 font-semibold text-red-500">Comienza Hoy</h2>
-            <p className="mt-2 text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl">
+            <motion.h2 
+              className="text-base/7 font-semibold text-red-500"
+              initial={{ y: 30, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Comienza Hoy
+            </motion.h2>
+            <motion.p 
+              className="mt-2 text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl"
+              initial={{ y: 40, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
               Optimiza tu logística. Trabaja con nosotros.
-            </p>
+            </motion.p>
           </hgroup>
-          <p className="mx-auto mt-6 max-w-xl text-lg/8 text-pretty text-gray-300">
+          <motion.p 
+            className="mx-auto mt-6 max-w-xl text-lg/8 text-pretty text-gray-300"
+            initial={{ y: 30, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
             Más que carga, movemos confianza. Soluciones logísticas integrales 
             con tecnología de punta y compromiso con la excelencia.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <a
+          </motion.p>
+          <motion.div 
+            className="mt-8 flex justify-center"
+            initial={{ scale: 0, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.7, type: "spring", stiffness: 100 }}
+          >
+            <motion.a
               href="#"
               className="rounded-md bg-red-600 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-red-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 transition-all duration-200"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               Solicitar Cotización
-            </a>
-          </div>
-        </div>
+            </motion.a>
+          </motion.div>
+        </motion.div>
         
-        <div className="mt-24 border-t border-gray-800 pt-12 xl:grid xl:grid-cols-3 xl:gap-8">
-          <div className="flex items-center">
-            <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center">
+        <motion.div 
+          className="mt-24 border-t border-gray-800 pt-12 xl:grid xl:grid-cols-3 xl:gap-8"
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <motion.div 
+            className="flex items-center"
+            initial={{ x: -30, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <motion.div 
+              className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center"
+              whileHover={{ scale: 1.1, rotate: 360 }}
+              transition={{ duration: 0.3 }}
+            >
               <span className="text-white font-bold text-lg">SN</span>
-            </div>
+            </motion.div>
             <span className="ml-3 text-xl font-bold">SAI & NEXUS</span>
-          </div>
+          </motion.div>
           
           <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+              >
                 <h3 className="text-sm/6 font-semibold text-white">Servicios</h3>
                 <ul role="list" className="mt-6 space-y-4">
-                  {navigation.servicios.map((item) => (
-                    <li key={item.name}>
-                      <a
+                  {navigation.servicios.map((item, index) => (
+                    <motion.li 
+                      key={item.name}
+                      initial={{ x: -20, opacity: 0 }}
+                      whileInView={{ x: 0, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.9 + index * 0.1 }}
+                    >
+                      <motion.a
                         href={item.href}
                         className="text-sm/6 text-gray-400 hover:text-red-500 transition-colors"
+                        whileHover={{ x: 5 }}
                       >
                         {item.name}
-                      </a>
-                    </li>
+                      </motion.a>
+                    </motion.li>
                   ))}
                 </ul>
-              </div>
-              <div className="mt-10 md:mt-0">
+              </motion.div>
+              <motion.div 
+                className="mt-10 md:mt-0"
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 1.0 }}
+              >
                 <h3 className="text-sm/6 font-semibold text-white">Soporte</h3>
                 <ul role="list" className="mt-6 space-y-4">
-                  {navigation.soporte.map((item) => (
-                    <li key={item.name}>
-                      <a
+                  {navigation.soporte.map((item, index) => (
+                    <motion.li 
+                      key={item.name}
+                      initial={{ x: -20, opacity: 0 }}
+                      whileInView={{ x: 0, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 1.1 + index * 0.1 }}
+                    >
+                      <motion.a
                         href={item.href}
                         className="text-sm/6 text-gray-400 hover:text-red-500 transition-colors"
+                        whileHover={{ x: 5 }}
                       >
                         {item.name}
-                      </a>
-                    </li>
+                      </motion.a>
+                    </motion.li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 1.2 }}
+              >
                 <h3 className="text-sm/6 font-semibold text-white">Empresa</h3>
                 <ul role="list" className="mt-6 space-y-4">
-                  {navigation.empresa.map((item) => (
-                    <li key={item.name}>
-                      <a
+                  {navigation.empresa.map((item, index) => (
+                    <motion.li 
+                      key={item.name}
+                      initial={{ x: -20, opacity: 0 }}
+                      whileInView={{ x: 0, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 1.3 + index * 0.1 }}
+                    >
+                      <motion.a
                         href={item.href}
                         className="text-sm/6 text-gray-400 hover:text-red-500 transition-colors"
+                        whileHover={{ x: 5 }}
                       >
                         {item.name}
-                      </a>
-                    </li>
+                      </motion.a>
+                    </motion.li>
                   ))}
                 </ul>
-              </div>
-              <div className="mt-10 md:mt-0">
+              </motion.div>
+              <motion.div 
+                className="mt-10 md:mt-0"
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 1.4 }}
+              >
                 <h3 className="text-sm/6 font-semibold text-white">Legal</h3>
                 <ul role="list" className="mt-6 space-y-4">
-                  {navigation.legal.map((item) => (
-                    <li key={item.name}>
-                      <a
+                  {navigation.legal.map((item, index) => (
+                    <motion.li 
+                      key={item.name}
+                      initial={{ x: -20, opacity: 0 }}
+                      whileInView={{ x: 0, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 1.5 + index * 0.1 }}
+                    >
+                      <motion.a
                         href={item.href}
                         className="text-sm/6 text-gray-400 hover:text-red-500 transition-colors"
+                        whileHover={{ x: 5 }}
                       >
                         {item.name}
-                      </a>
-                    </li>
+                      </motion.a>
+                    </motion.li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             </div>
           </div>
-        </div>
+        </motion.div>
         
-        <div className="mt-12 border-t border-gray-800 pt-8 md:flex md:items-center md:justify-between">
+        <motion.div 
+          className="mt-12 border-t border-gray-800 pt-8 md:flex md:items-center md:justify-between"
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 1.6 }}
+        >
           <div className="flex gap-x-6 md:order-2">
-            {navigation.social.map((item) => (
-              <a
+            {navigation.social.map((item, index) => (
+              <motion.a
                 key={item.name}
                 href={item.href}
                 className="text-gray-400 hover:text-red-500 transition-colors"
+                initial={{ scale: 0, rotate: -180 }}
+                whileInView={{ scale: 1, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: 1.7 + index * 0.1,
+                  type: "spring",
+                  stiffness: 150
+                }}
+                whileHover={{ scale: 1.2, y: -3 }}
               >
                 <span className="sr-only">{item.name}</span>
                 <item.icon aria-hidden="true" className="size-6" />
-              </a>
+              </motion.a>
             ))}
           </div>
-          <p className="mt-8 text-sm/6 text-gray-400 md:order-1 md:mt-0">
+          <motion.p 
+            className="mt-8 text-sm/6 text-gray-400 md:order-1 md:mt-0"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 1.8 }}
+          >
             &copy; 2025 SAI & NEXUS S.A. DE C.V. Todos los derechos reservados.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
       </div>
     </footer>
   )

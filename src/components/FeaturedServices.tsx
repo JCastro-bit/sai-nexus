@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+
 interface FeaturedService {
   title: string;
   image: string;
@@ -32,40 +34,99 @@ export default function FeaturedServices() {
     <section className="py-20 px-6 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {featuredServices.map((service, index) => (
-          <div 
+          <motion.div 
             key={index}
             className="relative group cursor-pointer overflow-hidden rounded-2xl aspect-[4/3] bg-gray-900"
+            initial={{ y: 60, opacity: 0, scale: 0.9 }}
+            whileInView={{ y: 0, opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ 
+              duration: 0.8,
+              delay: index * 0.15,
+              ease: "easeOut"
+            }}
+            whileHover={{ 
+              scale: 1.05,
+              transition: { duration: 0.3 }
+            }}
           >
-            <div 
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+            <motion.div 
+              className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: `url(${service.image})` }}
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.5 }}
             />
             
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" />
+            <motion.div 
+              className="absolute inset-0 bg-black/40"
+              whileHover={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}
+              transition={{ duration: 0.3 }}
+            />
             
             <div className="absolute inset-0 p-8 flex flex-col justify-between">
-              <div />
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.5,
+                  delay: index * 0.15 + 0.3,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                className="w-8 h-8 bg-red-600/20 backdrop-blur-sm rounded-full border border-red-500/30"
+              />
               
               <div>
-                <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
+                <motion.h3 
+                  className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight"
+                  initial={{ y: 30, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 0.6,
+                    delay: index * 0.15 + 0.4
+                  }}
+                >
                   {service.title}
-                </h3>
+                </motion.h3>
                 
-                <div className="flex flex-wrap gap-2">
+                <motion.div 
+                  className="flex flex-wrap gap-2"
+                  initial={{ y: 20, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 0.5,
+                    delay: index * 0.15 + 0.6
+                  }}
+                >
                   {service.categories.map((category, catIndex) => (
-                    <span key={catIndex}>
+                    <motion.span 
+                      key={catIndex}
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ 
+                        duration: 0.3,
+                        delay: index * 0.15 + 0.7 + catIndex * 0.1,
+                        type: "spring",
+                        stiffness: 200
+                      }}
+                      whileHover={{ scale: 1.1 }}
+                    >
                       <span className="text-gray-300 text-sm font-medium">
                         {category}
                       </span>
                       {catIndex < service.categories.length - 1 && (
                         <span className="text-gray-500 mx-2">/</span>
                       )}
-                    </span>
+                    </motion.span>
                   ))}
-                </div>
+                </motion.div>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

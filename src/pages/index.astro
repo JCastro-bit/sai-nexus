@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import HeroSection from "../components/HeroSection.astro";
 import ServicesSection from "../components/ServicesSection";
 import FeaturedServices from "../components/FeaturedServices";
+import TrackingSection from "../components/TrackingSection";
 import PricingSection from "../components/PricingSection";
 import ContactFooter from "../components/ContactFooter";
 ---
@@ -13,6 +14,7 @@ import ContactFooter from "../components/ContactFooter";
 	<HeroSection />
 	<ServicesSection client:load />
 	<FeaturedServices client:load />
+	<TrackingSection client:load />
 	<PricingSection client:load />
 	<ContactFooter client:load />
 </Main>

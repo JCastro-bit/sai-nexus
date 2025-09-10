@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
 const trackingPoints = [
@@ -14,11 +14,20 @@ const trackingPoints = [
 
 export default function TrackingSection() {
   const [trackingId, setTrackingId] = useState('');
+  const [searchResult, setSearchResult] = useState<string | null>(null);
+  const [isSearching, setIsSearching] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (trackingId.trim()) {
-      console.log('Tracking:', trackingId);
+      setIsSearching(true);
+      setSearchResult(null);
+      
+      // Simular búsqueda
+      setTimeout(() => {
+        setSearchResult('no-encontrado');
+        setIsSearching(false);
+      }, 1500);
     }
   };
 
@@ -111,7 +120,7 @@ export default function TrackingSection() {
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <div className="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
-            TRACKING
+            RASTREO
           </motion.span>
           
           <motion.h2 
@@ -121,7 +130,7 @@ export default function TrackingSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Track Your Package
+            Rastrea tu Paquete
           </motion.h2>
           
           <motion.form 
@@ -137,19 +146,65 @@ export default function TrackingSection() {
                 type="text"
                 value={trackingId}
                 onChange={(e) => setTrackingId(e.target.value)}
-                placeholder="Type tracking ID"
+                placeholder="Ingresa tu código de rastreo"
                 className="w-full bg-transparent border-2 border-gray-600 rounded-full px-8 py-4 text-white placeholder-gray-400 focus:border-red-500 focus:outline-none transition-colors text-lg"
               />
               <motion.button
                 type="submit"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
+                disabled={isSearching}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-red-600 hover:bg-red-700 disabled:bg-gray-600 rounded-full flex items-center justify-center transition-colors"
+                whileHover={{ scale: isSearching ? 1 : 1.1 }}
+                whileTap={{ scale: isSearching ? 1 : 0.95 }}
               >
-                <ArrowRightIcon className="w-5 h-5 text-white" />
+                {isSearching ? (
+                  <motion.div
+                    className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                  />
+                ) : (
+                  <ArrowRightIcon className="w-5 h-5 text-white" />
+                )}
               </motion.button>
             </div>
           </motion.form>
+          
+          {/* Resultado de búsqueda */}
+          <AnimatePresence>
+            {searchResult && (
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mt-8 max-w-lg mx-auto"
+              >
+                <div className="bg-red-600/20 border border-red-500/30 rounded-lg p-6 backdrop-blur-sm">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-white font-semibold">Código no encontrado</h3>
+                      <p className="text-gray-300 text-sm mt-1">
+                        El código de rastreo "{trackingId}" no existe en nuestro sistema. 
+                        Verifica que esté escrito correctamente o contacta a nuestro equipo de soporte.
+                      </p>
+                    </div>
+                  </div>
+                  <motion.button
+                    onClick={() => setSearchResult(null)}
+                    className="mt-4 text-red-400 hover:text-red-300 text-sm font-medium transition-colors"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    Intentar de nuevo
+                  </motion.button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
       </div>
 

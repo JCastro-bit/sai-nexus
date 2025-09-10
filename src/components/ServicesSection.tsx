@@ -49,7 +49,7 @@ export default function ServicesSection() {
   };
 
   return (
-    <section className="py-20 px-6 max-w-4xl mx-auto">
+    <section id="servicios" className="py-20 px-6 max-w-4xl mx-auto">
       <motion.h2 
         className="text-5xl md:text-6xl font-black text-center text-gray-900 mb-16 leading-tight"
         initial={{ y: 50, opacity: 0 }}

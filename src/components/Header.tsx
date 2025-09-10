@@ -84,7 +84,7 @@ export default function Header() {
                 <motion.a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className="text-gray-700 hover:text-red-600 transition-colors text-sm font-medium whitespace-nowrap"
+                  className="text-gray-700 hover:text-red-600 transition-colors text-sm font-medium whitespace-nowrap scroll-smooth"
                   initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}

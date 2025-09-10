@@ -56,7 +56,7 @@ const pricingPlans: PricingPlan[] = [
 
 export default function PricingSection() {
   return (
-    <section className="py-20 px-6 max-w-6xl mx-auto">
+    <section id="preguntas" className="py-20 px-6 max-w-6xl mx-auto">
       <div className="text-center mb-16">
         <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-4">
           Planes de Servicio

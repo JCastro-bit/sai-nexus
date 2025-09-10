@@ -23,7 +23,7 @@ export default function TrackingSection() {
   };
 
   return (
-    <section className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden">
+    <section id="rastrear" className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden">
       {/* Globe Background */}
       <motion.div 
         className="absolute inset-0 opacity-30"
@@ -35,7 +35,7 @@ export default function TrackingSection() {
         <div 
           className="w-full h-full bg-center bg-no-repeat bg-contain"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Ccircle cx='400' cy='400' r='350' fill='none' stroke='%23333' stroke-width='2'/%3E%3Cpath d='M 100 400 Q 250 300 400 400 T 700 400' stroke='%23333' stroke-width='1' fill='none'/%3E%3Cpath d='M 100 350 Q 250 250 400 350 T 700 350' stroke='%23333' stroke-width='1' fill='none'/%3E%3Cpath d='M 100 450 Q 250 350 400 450 T 700 450' stroke='%23333' stroke-width='1' fill='none'/%3E%3Cpath d='M 400 100 Q 500 250 400 400 T 400 700' stroke='%23333' stroke-width='1' fill='none'/%3E%3Cpath d='M 350 100 Q 450 250 350 400 T 350 700' stroke='%23333' stroke-width='1' fill='none'/%3E%3Cpath d='M 450 100 Q 550 250 450 400 T 450 700' stroke='%23333' stroke-width='1' fill='none'/%3E%3C/svg%3E")`
+            backgroundImage: `url("/img/sai-nexus-earth-map.svg")`
           }}
         />
       </motion.div>
@@ -62,9 +62,20 @@ export default function TrackingSection() {
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
-            initial={{ rotate: -180 }}
-            animate={{ rotate: 0 }}
-            transition={{ duration: 0.5, delay: point.delay + 0.2 }}
+            initial={{ rotate: -180, opacity: 0.3 }}
+            animate={{ 
+              rotate: 0, 
+              opacity: [0.3, 1, 0.3] 
+            }}
+            transition={{ 
+              rotate: { duration: 0.5, delay: point.delay + 0.2 },
+              opacity: { 
+                duration: 3, 
+                repeat: Infinity, 
+                ease: "easeInOut",
+                delay: point.delay + 1
+              }
+            }}
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />

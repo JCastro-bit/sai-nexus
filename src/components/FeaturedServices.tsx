@@ -9,22 +9,22 @@ interface FeaturedService {
 const featuredServices: FeaturedService[] = [
   {
     title: "Optimización de Rutas Inteligentes",
-    image: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=800&h=600&fit=crop",
     categories: ["Tecnología", "Eficiencia", "Ahorro"]
   },
   {
     title: "Protocolos de Seguridad Avanzados",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop", 
+    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop", 
     categories: ["Seguridad", "Cumplimiento", "Protección"]
   },
   {
     title: "Gestión de Cadena de Suministro",
-    image: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1473462927300-efec9cf900df?w=800&h=600&fit=crop",
     categories: ["Logística", "Optimización", "Control"]
   },
   {
     title: "Reportes Financieros Automatizados",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop",
     categories: ["Finanzas", "Automatización", "Análisis"]
   }
 ];
@@ -32,7 +32,7 @@ const featuredServices: FeaturedService[] = [
 export default function FeaturedServices() {
   return (
     <section className="py-20 px-6 max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
         {featuredServices.map((service, index) => (
           <motion.div 
             key={index}
@@ -46,21 +46,21 @@ export default function FeaturedServices() {
               ease: "easeOut"
             }}
             whileHover={{ 
-              scale: 1.05,
-              transition: { duration: 0.3 }
+              scale: 1.02,
+              transition: { duration: 0.4, ease: "easeOut" }
             }}
           >
             <motion.div 
               className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: `url(${service.image})` }}
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.5 }}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
             />
             
             <motion.div 
               className="absolute inset-0 bg-black/40"
-              whileHover={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}
-              transition={{ duration: 0.3 }}
+              whileHover={{ backgroundColor: "rgba(0, 0, 0, 0.55)" }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             />
             
             <div className="absolute inset-0 p-8 flex flex-col justify-between">

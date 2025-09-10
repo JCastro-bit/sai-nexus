@@ -152,14 +152,13 @@ export default function ContactFooter() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            <motion.div 
-              className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center"
-              whileHover={{ scale: 1.1, rotate: 360 }}
+            <motion.img
+              src="/logo/sai-nexus-logotipo-rojo-blanco.webp"
+              alt="SAI & NEXUS"
+              className="h-24 w-auto"
+              whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.3 }}
-            >
-              <span className="text-white font-bold text-lg">SN</span>
-            </motion.div>
-            <span className="ml-3 text-xl font-bold">SAI & NEXUS</span>
+            />
           </motion.div>
           
           <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">

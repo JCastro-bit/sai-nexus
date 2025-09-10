@@ -1,20 +1,79 @@
 ---
 import '../styles/global.css';
+import { SEO } from "astro-seo";
+
+interface Props {
+  content: {
+    title?: string;
+    description?: string;
+    image?: string;
+    type?: string;
+  }
+}
+
 const { content } = Astro.props;
+
+const defaultSEO = {
+  title: "SAI & NEXUS - Soluciones Logísticas Integrales",
+  description: "Más que carga, movemos confianza. Servicios logísticos especializados en transporte terrestre, almacenamiento y cadena de suministro con tecnología de punta.",
+  image: "/img/sai-nexus-og-image.jpg",
+  type: "website"
+};
+
+const seoConfig = {
+  title: content.title || defaultSEO.title,
+  description: content.description || defaultSEO.description,
+  image: content.image || defaultSEO.image,
+  type: content.type || defaultSEO.type
+};
 ---
 
-<html lang="en" class="scroll-smooth">
+<html lang="es" class="scroll-smooth">
 	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
-		<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
-		<link rel="shortcut icon" href="/favicon/favicon.ico" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-		<meta name="apple-mobile-web-app-title" content="SAI&NEXUS" />
-		<link rel="manifest" href="/favicon/site.webmanifest" />
+		<SEO
+			title={seoConfig.title}
+			description={seoConfig.description}
+			canonical={Astro.url.href}
+			openGraph={{
+				basic: {
+					title: seoConfig.title,
+					type: seoConfig.type,
+					image: new URL(seoConfig.image, Astro.url.origin).href,
+					url: Astro.url.href
+				},
+				optional: {
+					siteName: "SAI & NEXUS",
+					locale: "es_MX",
+					description: seoConfig.description
+				}
+			}}
+			twitter={{
+				card: "summary_large_image",
+				site: "@sainexus",
+				creator: "@sainexus",
+				title: seoConfig.title,
+				description: seoConfig.description,
+				image: new URL(seoConfig.image, Astro.url.origin).href,
+				imageAlt: "SAI & NEXUS - Servicios Logísticos"
+			}}
+			extend={{
+				link: [
+					{ rel: "icon", type: "image/png", href: "/favicon/favicon-96x96.png", sizes: "96x96" },
+					{ rel: "icon", type: "image/svg+xml", href: "/favicon/favicon.svg" },
+					{ rel: "shortcut icon", href: "/favicon/favicon.ico" },
+					{ rel: "apple-touch-icon", sizes: "180x180", href: "/favicon/apple-touch-icon.png" },
+					{ rel: "manifest", href: "/favicon/site.webmanifest" }
+				],
+				meta: [
+					{ name: "apple-mobile-web-app-title", content: "SAI&NEXUS" },
+					{ name: "theme-color", content: "#dc2626" },
+					{ name: "keywords", content: "logística, transporte terrestre, almacenamiento, cadena de suministro, México, SAI NEXUS" },
+					{ name: "author", content: "SAI & NEXUS S.A. DE C.V." },
+					{ name: "robots", content: "index, follow" }
+				]
+			}}
+		/>
 		<meta name="generator" content={Astro.generator} />
-		<title>{content.title}</title>
 	</head>
 	<body>
 		<slot />

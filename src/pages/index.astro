@@ -9,12 +9,21 @@ import TrackingSection from "../components/TrackingSection";
 import PricingSection from "../components/PricingSection";
 import ContactFooter from "../components/ContactFooter";
 ---
-<Main content={{ title: "SAI Logistics" }}>
-	<Header client:load/>
-	<HeroSection />
-	<ServicesSection client:load />
-	<FeaturedServices client:load />
-	<TrackingSection client:load />
-	<PricingSection client:load />
-	<ContactFooter client:load />
+
+<Main
+  content={{
+    title: "SAI & NEXUS - Servicios Logísticos | Transporte y Almacenamiento",
+    description:
+      "Soluciones logísticas integrales con transporte terrestre, almacenamiento y cadena de suministro optimizada. Más que carga, movemos confianza.",
+    image: "/favicon/apple-touch-icon.png",
+    type: "website",
+  }}
+>
+  <Header client:load />
+  <HeroSection />
+  <ServicesSection client:load />
+  <FeaturedServices client:load />
+  <TrackingSection client:load />
+  <PricingSection client:load />
+  <ContactFooter client:load />
 </Main>

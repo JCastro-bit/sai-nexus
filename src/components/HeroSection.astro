@@ -1,26 +1,66 @@
-
 <section id="nosotros" class="relative min-h-screen bg-gray-50 flex flex-col">
   <!-- Texto Principal -->
-  <div class="flex-1 flex items-center justify-center pt-24 pb-8">
-    <div class="text-center">
-      <h1 class="text-7xl md:text-9xl font-black text-gray-900 leading-[0.85] mb-4">
+  <div class="flex-1 flex items-center justify-center pt-16 sm:pt-20 md:pt-24 pb-4 sm:pb-8 px-4">
+    <div class="text-center max-w-7xl mx-auto">
+      <h1 class="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-gray-900 leading-[0.85] mb-2 sm:mb-4">
         TU SOLUCIÓN<br>
         <span class="text-red-600">LOGÍSTICA</span>
       </h1>
-      <p class="block md:hidden text-xl text-gray-600 font-medium max-w-2xl mx-auto">
+      <p class="block md:hidden text-base sm:text-lg lg:text-xl text-gray-600 font-medium max-w-2xl mx-auto px-4">
         Más que carga, movemos confianza
       </p>
     </div>
   </div>
 
   <!-- Imagen con superposición sutil -->
-  <div class="relative -mt-20 mb-8">
+  <div class="relative -mt-8 sm:-mt-12 md:-mt-20 mb-4 sm:mb-8 px-4">
     <div class="flex justify-center">
-      <img 
-        src="/img/truck-in-highway.webp" 
-        alt="Truck on highway" 
-        class="w-full max-w-6xl h-auto object-cover rounded-2xl"
-      />
+      <picture>
+        <!-- Imagen para móvil (más cuadrada) -->
+        <source 
+          media="(max-width: 640px)" 
+          srcset="/img/truck-in-highway-mobile.webp" 
+          class="w-full h-auto object-cover rounded-xl sm:rounded-2xl aspect-[4/3]"
+        />
+        <!-- Imagen para tablet y desktop -->
+        <img 
+          src="/img/truck-in-highway.webp" 
+          alt="Truck on highway" 
+          class="w-full max-w-2xl sm:max-w-4xl md:max-w-6xl h-auto object-cover rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl"
+          loading="eager"
+        />
+      </picture>
+    </div>
+  </div>
+
+  <!-- Scroll indicator para móvil -->
+  <div class="block sm:hidden absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <div class="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+      <div class="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse"></div>
     </div>
   </div>
 </section>
+
+<style>
+  @media (max-width: 475px) {
+    .xs\:text-5xl {
+      font-size: 3rem;
+      line-height: 1;
+    }
+  }
+  
+  /* Optimización para pantallas muy pequeñas */
+  @media (max-width: 360px) {
+    h1 {
+      font-size: 2.5rem !important;
+    }
+  }
+  
+  /* Mejora la legibilidad en dispositivos con alta densidad de píxeles */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    img {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+  }
+</style>
